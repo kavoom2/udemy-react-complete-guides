@@ -1,16 +1,16 @@
 import React, {useState} from "react";
 import "./ExpenseForm.css"
 
-const ExpenseForm = ({onSaveExpenseData}) => {
+const ExpenseForm = ({onSaveExpenseData, onCancel}) => {
     const [userInput, setUserInput] = useState({
         enteredTitle: "",
         enteredAmount: "",
         enteredDate: "",
     })
-    // React 설계 원칙
+    // ! React 설계 원칙
     // State를 컨트롤하는 컴포넌트를 구성한다. 상태를 관리하는 컴포넌트는 최소화하며, Props를 통해 재사용이 가능하도록 한다.
 
-    // setUserInput({...userInput, [event.target.dataset.name]: event.target.name})
+    // ! setUserInput({...userInput, [event.target.dataset.name]: event.target.name})
     // --> 이 방법은 Outdated State를 다시 업데이트 하는 상황이 발생한다. (폼 관련 작성할 때 겪었던 문제를 생각해보자.)
     // --> 직전의 상태임을 보장하려면 아래와 같이 작성하도록 한다. 
 
@@ -63,6 +63,7 @@ const ExpenseForm = ({onSaveExpenseData}) => {
             </div>
 
             <div className="new-expense__actions">
+                <button type="button" onClick={onCancel}>Cancel</button>
                 <button type="submit">Add Expense</button>
             </div>
         </form>
